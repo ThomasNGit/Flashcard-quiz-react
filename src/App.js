@@ -4,7 +4,7 @@ import "./style/app.css";
 import axios from "axios";
 
 function App() {
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
+  const [flashcards, setFlashcards] = useState([]);
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10").then((res) => {
       setFlashcards(
@@ -31,22 +31,11 @@ function App() {
     textArea.innerHTML = str;
     return textArea.value;
   }
-  return <FlashCardList flashcards={flashcards} />;
+  return (
+    <div className="container">
+      <FlashCardList flashcards={flashcards} />
+    </div>
+  );
 }
-
-const SAMPLE_FLASHCARDS = [
-  {
-    id: 1,
-    question: "Quanto fa 2+2?",
-    answer: "4",
-    options: ["2", "3", "4", "5"],
-  },
-  {
-    id: 2,
-    question: "Quanto fa 3+3?",
-    answer: "6",
-    options: ["5", "6", "7", "8"],
-  },
-];
 
 export default App;
